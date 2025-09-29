@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 const Logo: React.FC = () => (
@@ -12,6 +11,7 @@ const Logo: React.FC = () => (
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const contactFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdSi5H7PLK7lW2LhI4WhiwctaGFFrOLGBCrg1f6mM6BhPVZiA/viewform";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,41 +22,34 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { href: '#about', label: 'About Us' },
-    { href: '#services', label: 'Services' },
-    { href: '#why-us', label: 'Why Us' },
-    { href: '#testimonials', label: 'Testimonials' },
+    { href: '/#about', label: 'About Us' },
+    { href: '/#services', label: 'Services' },
+    { href: '/#why-us', label: 'Why Us' },
+    { href: '/#testimonials', label: 'Testimonials' },
   ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const targetId = e.currentTarget.getAttribute('href')?.substring(1);
-    if (targetId) {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a href="#home" onClick={handleNavClick} aria-label="Innovate HR Home Page">
+          <a href="/" aria-label="Innovate HR Home Page">
             <Logo />
           </a>
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} onClick={handleNavClick} className="text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium">
+              <a key={link.href} href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium">
                 {link.label}
               </a>
             ))}
           </nav>
           <div className="hidden lg:block">
-            <a href="#contact" onClick={handleNavClick} className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-lg">
+            <a href={contactFormUrl} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-lg">
               Contact
             </a>
           </div>
           <div className="lg:hidden">
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-800 focus:outline-none">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-800 focus:outline-none" aria-expanded={isMenuOpen} aria-controls="mobile-menu">
+              <span className="sr-only">Open main menu</span>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
               </svg>
@@ -64,14 +57,14 @@ const Header: React.FC = () => {
           </div>
         </div>
         {isMenuOpen && (
-          <div className="lg:hidden mt-4 bg-white rounded-lg shadow-xl p-4">
+          <div id="mobile-menu" className="lg:hidden mt-4 bg-white rounded-lg shadow-xl p-4">
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium" onClick={(e) => { handleNavClick(e); setIsMenuOpen(false); }}>
+                <a key={link.href} href={link.href} className="text-gray-600 hover:text-blue-600 transition-colors duration-300 font-medium" onClick={() => setIsMenuOpen(false)}>
                   {link.label}
                 </a>
               ))}
-              <a href="#contact" className="bg-blue-600 text-white text-center font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-all duration-300" onClick={(e) => { handleNavClick(e); setIsMenuOpen(false); }}>
+              <a href={contactFormUrl} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white text-center font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
                 Contact
               </a>
             </nav>

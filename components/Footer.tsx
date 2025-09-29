@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const SocialIcon: React.FC<{ href: string; children: React.ReactNode; 'aria-label': string }> = ({ href, children, 'aria-label': ariaLabel }) => (
@@ -8,13 +7,12 @@ const SocialIcon: React.FC<{ href: string; children: React.ReactNode; 'aria-labe
 );
 
 const Footer: React.FC = () => {
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const targetId = e.currentTarget.getAttribute('href')?.substring(1);
-    if (targetId) {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const quickLinks = [
+    { href: '/#about', label: 'About Us' },
+    { href: '/#services', label: 'Services' },
+    { href: '/#testimonials', label: 'Testimonials' },
+    { href: 'https://docs.google.com/forms/d/e/1FAIpQLSdSi5H7PLK7lW2LhI4WhiwctaGFFrOLGBCrg1f6mM6BhPVZiA/viewform', label: 'Contact' },
+  ];
 
   return (
     <footer className="bg-gray-800 text-white py-12">
@@ -27,10 +25,16 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              <li><a href="#about" onClick={handleNavClick} className="text-gray-400 hover:text-white">About Us</a></li>
-              <li><a href="#services" onClick={handleNavClick} className="text-gray-400 hover:text-white">Services</a></li>
-              <li><a href="#testimonials" onClick={handleNavClick} className="text-gray-400 hover:text-white">Testimonials</a></li>
-              <li><a href="#contact" onClick={handleNavClick} className="text-gray-400 hover:text-white">Contact</a></li>
+              {quickLinks.map(link => (
+                <li key={link.href}>
+                  <a href={link.href} 
+                    className="text-gray-400 hover:text-white"
+                    {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           <div>

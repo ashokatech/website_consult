@@ -1,46 +1,6 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 
 const ContactSection: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Since this is a static site without a backend, we'll use the 'mailto:'
-    // protocol to open the user's default email client.
-    const recipientEmail = 'contact@innovatehr.com';
-    const subject = `New Contact Inquiry from ${formData.name}`;
-    const body = `
-      Name: ${formData.name}
-      Email: ${formData.email}
-      
-      Message:
-      ${formData.message}
-    `;
-
-    // Construct the mailto link and encode the subject and body for URL safety
-    const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.trim())}`;
-
-    // Open the email client
-    window.location.href = mailtoLink;
-
-    console.log('Attempting to open email client for:', formData);
-    setSubmitted(true);
-    // We don't clear the form data immediately, in case the mailto link fails.
-    // The user can try again or copy the text.
-    // Let's reset the form after a short delay.
-    setTimeout(() => {
-        setFormData({ name: '', email: '', message: '' });
-    }, 3000)
-  };
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -50,32 +10,20 @@ const ContactSection: React.FC = () => {
             Have questions or want to discuss your HR needs? We're here to help.
           </p>
         </div>
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="bg-gray-50 p-8 rounded-lg">
-            {submitted ? (
-              <div className="text-center p-8 bg-blue-100 text-blue-800 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-2">Preparing Your Email...</h3>
-                <p>Your email client should open shortly. If it doesn't, please send your message directly to contact@innovatehr.com.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name</label>
-                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"/>
-                </div>
-                <div className="mb-6">
-                  <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
-                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"/>
-                </div>
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Message</label>
-                  <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} required className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"></textarea>
-                </div>
-                <button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-sky-500 text-white font-bold text-lg px-10 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                  Send Message
-                </button>
-              </form>
-            )}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="bg-gray-50 p-8 rounded-lg text-center flex flex-col justify-center items-center h-full">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Ready to Transform Your Workplace?</h3>
+            <p className="text-gray-600 mb-8 max-w-md">
+              Click the button below to fill out our inquiry form. We'll review your submission and get back to you promptly to schedule your free consultation.
+            </p>
+            <a 
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdSi5H7PLK7lW2LhI4WhiwctaGFFrOLGBCrg1f6mM6BhPVZiA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gradient-to-r from-blue-600 to-sky-500 text-white font-bold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              Open Inquiry Form
+            </a>
           </div>
           <div className="space-y-8">
             <div className="flex items-start space-x-4">
