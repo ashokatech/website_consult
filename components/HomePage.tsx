@@ -3,7 +3,6 @@ import HeroSection from './HeroSection';
 import AboutSection from './AboutSection';
 import ServicesSection from './ServicesSection';
 import WhyChooseUsSection from './WhyChooseUsSection';
-import TestimonialsSection from './TestimonialsSection';
 import ContactSection from './ContactSection';
 
 const HomePage: React.FC = () => {
@@ -13,7 +12,6 @@ const HomePage: React.FC = () => {
       <AboutSection />
       <ServicesSection />
       <WhyChooseUsSection />
-      <TestimonialsSection />
       <ContactSection />
     </>
   );

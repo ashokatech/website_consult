@@ -1,17 +1,35 @@
 import React, { useState, useEffect } from 'react';
 
 const Logo: React.FC = () => (
-  <div className="flex items-center space-x-2">
-    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 21a9 9 0 01-9-9V7l9-4 9 4v5a9 9 0 01-9 9z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 12a3 3 0 100-6 3 3 0 000 6z"></path></svg>
-    <span className="text-2xl font-bold text-gray-800">Innovate HR</span>
+  <div className="flex items-center space-x-3">
+    <svg className="w-12 h-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32 4L58.7846 20V52L32 68L5.21539 52V20L32 4Z" stroke="#D1D5DB" strokeWidth="1"/>
+      <g>
+        <path d="M32 4V20M32 68V52M5.21539 20L18.6077 28M58.7846 52L45.3923 44M5.21539 52L18.6077 44M58.7846 20L45.3923 28M18.6077 28L32 20L45.3923 28L45.3923 44L32 52L18.6077 44L18.6077 28Z" stroke="#9CA3AF" strokeWidth="1.5"/>
+        <circle cx="32" cy="4" r="2" fill="#f97316"/>
+        <circle cx="58.78" cy="20" r="2" fill="#84cc16"/>
+        <circle cx="58.78" cy="52" r="2" fill="#3b82f6"/>
+        <circle cx="32" cy="68" r="2" fill="#a855f7"/>
+        <circle cx="5.22" cy="52" r="2" fill="#ef4444"/>
+        <circle cx="5.22" cy="20" r="2" fill="#eab308"/>
+        <circle cx="18.61" cy="28" r="2" fill="#eab308"/>
+        <circle cx="45.39" cy="28" r="2" fill="#84cc16"/>
+        <circle cx="45.39" cy="44" r="2" fill="#3b82f6"/>
+        <circle cx="18.61" cy="44" r="2" fill="#ef4444"/>
+        <circle cx="32" cy="20" r="2.5" fill="#f97316"/>
+        <circle cx="32" cy="52" r="2.5" fill="#a855f7"/>
+      </g>
+    </svg>
+    <div className="flex flex-col">
+      <span className="text-xl font-extrabold text-gray-800 tracking-tight">SM CONSULTING SERVICES</span>
+      <span className="text-xs font-semibold text-blue-600">Builds Stories of Choice</span>
+    </div>
   </div>
 );
-
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const contactFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdSi5H7PLK7lW2LhI4WhiwctaGFFrOLGBCrg1f6mM6BhPVZiA/viewform";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,17 +40,17 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
+    { href: '/#home', label: 'Home' },
     { href: '/#about', label: 'About Us' },
     { href: '/#services', label: 'Services' },
-    { href: '/#why-us', label: 'Why Us' },
-    { href: '/#testimonials', label: 'Testimonials' },
+    { href: '/#values', label: 'Core Values' },
   ];
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-6 py-4">
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
+      <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
-          <a href="/" aria-label="Innovate HR Home Page">
+          <a href="/#home" aria-label="SM Consulting Services Home Page">
             <Logo />
           </a>
           <nav className="hidden lg:flex items-center space-x-8">
@@ -43,7 +61,7 @@ const Header: React.FC = () => {
             ))}
           </nav>
           <div className="hidden lg:block">
-            <a href={contactFormUrl} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-lg">
+            <a href="/#contact" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-lg">
               Contact
             </a>
           </div>
@@ -64,7 +82,7 @@ const Header: React.FC = () => {
                   {link.label}
                 </a>
               ))}
-              <a href={contactFormUrl} target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white text-center font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
+              <a href="/#contact" className="bg-blue-600 text-white text-center font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-all duration-300" onClick={() => setIsMenuOpen(false)}>
                 Contact
               </a>
             </nav>
