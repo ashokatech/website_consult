@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
     { href: '/#about', label: 'About Us' },
     { href: '/#services', label: 'Services' },
     { href: '/#values', label: 'Core Values' },
-    { href: '/#blog', label: 'Blog' },
+    { href: '/#activities', label: 'Activities' },
     { href: '/#contact', label: 'Contact' },
   ];
 
@@ -54,9 +54,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-12 border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
-          {/* FIX: Replaced `newgetFullYear()` with `new Date().getFullYear()` to correctly get the current year. */}
           <p>&copy; {new Date().getFullYear()} SM Consulting Services. All Rights Reserved.</p>
-          <p className="mt-2"><a href="#/admin" className="hover:text-white underline">Admin Login</a></p>
         </div>
       </div>
     </footer>
